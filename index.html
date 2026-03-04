@@ -113,17 +113,17 @@
         setLoading(true); setError("");
         try {
           const [newLead] = await sb("leads", {
-  method:"POST",
-  prefer: "resolution=merge-duplicates,return=representation",
+  method: "POST",
+  headers: { "Prefer": "resolution=merge-duplicates,return=representation" },
   body: JSON.stringify({
-              telefono: form.telefono,
-              nombre: form.nombre || null,
-              negocio: form.negocio || null,
-              nicho: form.nicho,
-              estado: "nuevo",
-              agente_actual: "A",
-            }),
-          });
+    telefono: form.telefono,
+    nombre: form.nombre || null,
+    negocio: form.negocio || null,
+    nicho: form.nicho,
+    estado: "nuevo",
+    agente_actual: "A",
+  }),
+})
           try {
             await fetch(N8N_WEBHOOK, {
               method:"POST",
