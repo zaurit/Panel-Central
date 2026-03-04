@@ -113,8 +113,9 @@
         setLoading(true); setError("");
         try {
           const [newLead] = await sb("leads", {
-            method:"POST",
-            body: JSON.stringify({
+  method:"POST",
+  prefer: "resolution=merge-duplicates,return=representation",
+  body: JSON.stringify({
               telefono: form.telefono,
               nombre: form.nombre || null,
               negocio: form.negocio || null,
